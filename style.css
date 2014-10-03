@@ -65,6 +65,8 @@ p {
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 28px;
+  box-shadow: 4px 4px 4px #838788;
+  border: 2px solid #605247;
 }
 
 .cell {
