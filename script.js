@@ -1,12 +1,12 @@
 function Board(){
 
   // Constants
-	this.BOARD_HEIGHT   = 100;
-	this.BOARD_WIDTH    = 100;
+  this.BOARD_HEIGHT   = 100;
+  this.BOARD_WIDTH    = 100;
   this.BEGINNING_SEED = 1000
 
   // Boards
-	this.board     = [];
+  this.board     = [];
   this.nextBoard = [];
 
   // Board Canvas
@@ -26,15 +26,15 @@ function Board(){
   // HELPERS
   // 
   // Returns a zeroed-out array representing the board
-	this.clearBoard = function(){
+  this.clearBoard = function(){
     var board = [];
-		for (var y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
-			for (var x = this.BOARD_WIDTH - 1; x >= 0; x--) {
-				board[x + this.BOARD_HEIGHT*y] = 0;
-			};
-		};
+    for (var y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
+      for (var x = this.BOARD_WIDTH - 1; x >= 0; x--) {
+        board[x + this.BOARD_HEIGHT*y] = 0;
+        };
+      };
     return board;
-	};
+  };
   // Sets a random cell to the living state
   this.setRandomLiveCell = function(){
     this.board[Math.floor(Math.random()*this.board.length)] = 1;
@@ -134,6 +134,6 @@ function Board(){
 };
 
 $(document).ready(function(){
-	var board = new Board;
-	board.start();
+  var board = new Board;
+  board.start();
 });
