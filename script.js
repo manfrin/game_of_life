@@ -1,13 +1,31 @@
 function Board(){
+
+  // Constants
 	this.BOARD_HEIGHT   = 100;
 	this.BOARD_WIDTH    = 100;
   this.BEGINNING_SEED = 1000
 
+  // Boards
 	this.board     = [];
   this.nextBoard = [];
 
+  // Board Canvas
   this.boardEl = $('#board')
 
+  // Runner
+  this.start = function(){
+    this.newBoard();
+    this.seedNewBoard();
+    this.renderBoard();
+
+    this.tic();
+  };
+
+
+  // 
+  // HELPERS
+  // 
+  // Returns a zeroed-out array representing the board
 	this.clearBoard = function(){
     var board = [];
 		for (var y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
@@ -17,27 +35,38 @@ function Board(){
 		};
     return board;
 	};
+  // Sets a random cell to the living state
+  this.setRandomLiveCell = function(){
+    this.board[Math.floor(Math.random()*this.board.length)] = 1;
+  };
+  // Creates a new random board
+  this.seedNewBoard = function(){
+    for (var i = this.BEGINNING_SEED - 1; i >= 0; i--) {
+      this.setRandomLiveCell();
+    };
+  };
 
+
+  // 
+  // FIRST RUN METHODS
+  // 
+  // Sets Main Board to a new, zeroed board
   this.newBoard = function(){
     this.board = this.clearBoard();
   };
-
-	this.start = function(){
-		this.newBoard();
-    this.seedNewBoard();
-    this.renderBoard();
-
-    this.tic();
-	};
-
+  // Creates the elements to represent cells
   this.renderBoard = function(){
     for (var i = this.board.length - 1; i >= 0; i--) {
-      var klass ='empty';
-      el = "<div class='cell " + klass + "' id='" + i + "'></div>";
+      el = "<div class='cell' id='" + i + "'></div>";
       this.boardEl.append(el);
     };
   };
 
+
+  // 
+  // LOGIC
+  // 
+  // Fills in the next generation of cells.
   this.nextGeneration = function(){
     for (var i = this.board.length - 1; i >= 0; i--) {
       if (this.shallItLive(i) === true) {
@@ -49,7 +78,7 @@ function Board(){
     this.board     = this.nextBoard
     this.nextBoard = this.clearBoard();
   };
-
+  // Sets the graphics
   this.draw = function(){
     for (var i = this.board.length - 1; i >= 0; i--) {
 
@@ -64,17 +93,7 @@ function Board(){
         };
       };
     };
-
-  this.setRandomLiveCell = function(){
-    this.board[Math.floor(Math.random()*this.board.length)] = 1;
-  };
-
-  this.seedNewBoard = function(){
-    for (var i = this.BEGINNING_SEED - 1; i >= 0; i--) {
-      this.setRandomLiveCell();
-    };
-  };
-
+  // Computes the number of living neighbors
   this.livingNeighbors = function(index){
     var liveNeighbors = 0;
     liveNeighbors += this.board[index + 1];
@@ -87,7 +106,7 @@ function Board(){
     liveNeighbors += this.board[index - 1 - this.BOARD_HEIGHT];
     return liveNeighbors;
   };
-
+  // The Judge
   this.shallItLive = function(index){
     var neighborhood = this.livingNeighbors(index);
     var living       = this.board[index]
@@ -101,6 +120,10 @@ function Board(){
     };
   };
 
+
+  // 
+  // TIC
+  // 
   this.tic = function(){
     var that = this
     var timer = setInterval(function(){
