@@ -44,7 +44,7 @@ table {
 }
 
 body {
-	background-color: #AEBBC4;
+	background-color: #F9E9D0;
 }
 
 .header {
@@ -70,14 +70,20 @@ p {
 .cell {
 	width: 8px;
 	height: 8px;
-	background-color: #8FACB7;
-	border: 1px solid #AEBBC4;
+	background-color: #C2AB9B;
+	border: 1px solid #F9E9D0;
 	display: inline-block;
 }
-
+.dead {
+  background-color: #86745C;
+  border: 1px solid #86745C;
+}
 .living {
-	background-color: #88565D;
-	border: 1px solid #818494;
+	background-color: #99784D;
+	border-bottom: 1px solid #300938;
+  border-right: 1px solid #300938;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
 }
 
 h1 {

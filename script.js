@@ -56,7 +56,11 @@ function Board(){
       if (this.board[i] === 1){
           this.boardEl.find('#' + i).addClass('living')
         } else {
-          this.boardEl.find('#' + i).removeClass('living')
+          el = this.boardEl.find('#' + i);
+          if (el.hasClass('living')) {
+            el.addClass('dead');
+          };
+          el.removeClass('living');
         };
       };
     };
