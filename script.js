@@ -1,9 +1,9 @@
 function Board(){
 
   // Constants
-  this.BOARD_HEIGHT   = 100;
-  this.BOARD_WIDTH    = 100;
-  this.BEGINNING_SEED = 1000
+  this.BOARD_HEIGHT   = 40;
+  this.BOARD_WIDTH    = 40;
+  this.BEGINNING_SEED = 140
 
   // Boards
   this.board     = [];
@@ -96,14 +96,31 @@ function Board(){
   // Computes the number of living neighbors
   this.livingNeighbors = function(index){
     var liveNeighbors = 0;
-    liveNeighbors += this.board[index + 1];
-    liveNeighbors += this.board[index - 1];
-    liveNeighbors += this.board[index + 1 + this.BOARD_HEIGHT];
-    liveNeighbors += this.board[index - 1 + this.BOARD_HEIGHT];
-    liveNeighbors += this.board[index + 0 + this.BOARD_HEIGHT];
-    liveNeighbors += this.board[index + 1 - this.BOARD_HEIGHT];
-    liveNeighbors += this.board[index + 0 - this.BOARD_HEIGHT];
-    liveNeighbors += this.board[index - 1 - this.BOARD_HEIGHT];
+    if(typeof this.board[index + 1] != 'undefined') {
+      liveNeighbors += this.board[index + 1];
+    };
+    if(typeof this.board[index - 1] != 'undefined') {
+      liveNeighbors += this.board[index - 1];
+    };
+    if(typeof this.board[index + 1 + this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index + 1 + this.BOARD_HEIGHT];
+    };
+    if(typeof this.board[index - 1 + this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index - 1 + this.BOARD_HEIGHT];
+    };
+    if(typeof this.board[index + 0 + this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index + 0 + this.BOARD_HEIGHT];
+    };
+    if(typeof this.board[index + 1 - this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index + 1 - this.BOARD_HEIGHT];
+    };
+    if(typeof this.board[index + 0 - this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index + 0 - this.BOARD_HEIGHT];
+    };
+    if(typeof this.board[index - 1 - this.BOARD_HEIGHT] != 'undefined') {
+      liveNeighbors += this.board[index - 1 - this.BOARD_HEIGHT];
+    };
+
     return liveNeighbors;
   };
   // The Judge
