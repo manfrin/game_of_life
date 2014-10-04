@@ -95,33 +95,25 @@ function Board(){
     };
   // Computes the number of living neighbors
   this.livingNeighbors = function(index){
-    var liveNeighbors = 0;
-    if(typeof this.board[index + 1] != 'undefined') {
-      liveNeighbors += this.board[index + 1];
-    };
-    if(typeof this.board[index - 1] != 'undefined') {
-      liveNeighbors += this.board[index - 1];
-    };
-    if(typeof this.board[index + 1 + this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index + 1 + this.BOARD_HEIGHT];
-    };
-    if(typeof this.board[index - 1 + this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index - 1 + this.BOARD_HEIGHT];
-    };
-    if(typeof this.board[index + 0 + this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index + 0 + this.BOARD_HEIGHT];
-    };
-    if(typeof this.board[index + 1 - this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index + 1 - this.BOARD_HEIGHT];
-    };
-    if(typeof this.board[index + 0 - this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index + 0 - this.BOARD_HEIGHT];
-    };
-    if(typeof this.board[index - 1 - this.BOARD_HEIGHT] != 'undefined') {
-      liveNeighbors += this.board[index - 1 - this.BOARD_HEIGHT];
+    var liveNeighbors = [];
+    liveNeighbors.push(this.board[index + 1]);
+    liveNeighbors.push(this.board[index - 1]);
+    liveNeighbors.push(this.board[index + 1 + this.BOARD_HEIGHT]);
+    liveNeighbors.push(this.board[index - 1 + this.BOARD_HEIGHT]);
+    liveNeighbors.push(this.board[index + 0 + this.BOARD_HEIGHT]);
+    liveNeighbors.push(this.board[index + 1 - this.BOARD_HEIGHT]);
+    liveNeighbors.push(this.board[index + 0 - this.BOARD_HEIGHT]);
+    liveNeighbors.push(this.board[index - 1 - this.BOARD_HEIGHT]);
+
+    var neighbors = 0;
+    console.log(liveNeighbors);
+    for (var i = liveNeighbors.length - 1; i >= 0; i--) {
+      if(typeof liveNeighbors[i] != 'undefined') { 
+        neighbors += liveNeighbors[i];
+      };
     };
 
-    return liveNeighbors;
+    return neighbors;
   };
   // The Judge
   this.shallItLive = function(index){
